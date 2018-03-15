@@ -27,9 +27,14 @@ class BooksApp extends Component {
   }
 
   setBookShelf = (book, bookshelf) => {
-    BooksAPI.update(book, bookshelf).then(() => {
-      this.componentDidMount();
-    });
+    // BooksAPI.update(book, bookshelf).then(() => {
+    //   this.componentDidMount();
+    // });
+    BooksAPI.update(book, bookshelf);
+    var bookIndex = this.state.books.findIndex(x => x.id === book.id);
+    var booksCopy = this.state.books;
+    booksCopy[bookIndex].shelf = bookshelf;
+    this.setState({ books: booksCopy});
   }
 
   render() {
