@@ -14,18 +14,21 @@ class ListBooks extends Component {
               book.shelf === 'currentlyReading'
             ))} 
             bookshelfTitle='Currently Reading'
+            setBookshelf={this.props.setBookshelf}
           />
           <Bookshelf 
             books={this.props.books.filter((book) => (
               book.shelf === 'wantToRead'
             ))} 
             bookshelfTitle='Want To Read'
+            setBookshelf={this.props.setBookshelf}
           />
           <Bookshelf 
             books={this.props.books.filter((book) => (
               book.shelf === 'read'
             ))} 
             bookshelfTitle='Read'
+            setBookshelf={this.props.setBookshelf}
           />
         </div>
         <div className="open-search">

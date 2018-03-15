@@ -26,13 +26,23 @@ class BooksApp extends Component {
     });
   }
 
+  setBookShelf = (book, bookshelf) => {
+    BooksAPI.update(book, bookshelf).then(() => {
+      this.componentDidMount();
+    });
+  }
+
   render() {
     return (
       <div className="app">
         {this.state.showSearchPage ? (
           <Search setShowSearchPage={this.setShowSearchPage} />
         ) : (
-          <ListBooks books={this.state.books} setShowSearchPage={this.setShowSearchPage} />
+          <ListBooks 
+            books={this.state.books} 
+            setShowSearchPage={this.setShowSearchPage} 
+            setBookshelf={this.setBookShelf}
+          />
         )}
       </div>
     );
