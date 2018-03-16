@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Bookshelf from './Bookshelf';
+import PropTypes from 'prop-types'
 
 class ListBooks extends Component {
 
@@ -45,6 +46,12 @@ function ListBooksHeader() {
       <h1>MyReads</h1>
     </div>
   );
+}
+
+ListBooks.propTypes = {
+  books: PropTypes.array.isRequired,
+  setShowSearchPage: PropTypes.func.isRequired,
+  setBookshelf: PropTypes.func.isRequired
 }
 
 export default ListBooks;
