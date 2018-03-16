@@ -38,7 +38,10 @@ class BooksApp extends Component {
     return (
       <div className="app">
         {this.state.showSearchPage ? (
-          <Search setShowSearchPage={this.setShowSearchPage} />
+          <Search 
+            books={this.state.books} 
+            setShowSearchPage={this.setShowSearchPage} 
+        />
         ) : (
           <ListBooks 
             books={this.state.books} 
