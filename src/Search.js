@@ -1,16 +1,40 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
+import Bookshelf from './Bookshelf';
+import PropTypes from 'prop-types';
+import escapeRegExp from 'escape-string-regexp';
+import * as BooksAPI from './BooksAPI'
+// import sortBy from 'sort-by';
 
 class Search extends Component {
   state = {
-    query: ''
+    query: '',
+    showingBooks: []
   };
 
   updateQuery = (query) => {
-    this.setState({ query: query.trim() });
+    this.setState({ query: query });
+    this.searchBooks(query)
+  }
+
+  searchBooks = (query) => {
+    if (this.state.query) {
+      // let showingBooks;
+      // const match = new RegExp(escapeRegExp(this.state.query), 'i');
+      // showingBooks = this.props.books.filter((book) => match.test(book.title));
+      BooksAPI.search(this.state.query).then((showingBooks) => {
+        this.setState({ showingBooks: showingBooks });
+
+      })
+      // console.log('search books', showingBooks);
+    } else {
+      // showingBooks = this.props.books;
+      this.setState({ showingBooks: []});
+    }
   }
 
   render() {
+    // console.log('search books', this.state.showingBooks);
+
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -33,8 +57,11 @@ class Search extends Component {
           </div>
         </div>
         <div className="search-books-results">
-          {JSON.stringify(this.state)}
-          <ol className="books-grid"></ol>
+          <Bookshelf 
+            books={this.state.showingBooks}
+            bookshelfTitle='Search'
+            setBookshelf={this.props.setBookshelf}
+          />
         </div>
       </div>
     );

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 class Bookshelf extends Component {
   render() {
@@ -9,7 +9,7 @@ class Bookshelf extends Component {
           <div className="bookshelf-books">
             <ol className="books-grid">
               {this.props.books.map((book) => (
-                <li key={book.title}>
+                <li key={book.id}>
                   <div className="book">
                     <div className="book-top">
                       <div className="book-cover" style={{
@@ -42,6 +42,7 @@ class Bookshelf extends Component {
 }
 
 Bookshelf.PropTypes = {
+  books: PropTypes.array.isRequired,
   setBookshelf: PropTypes.func.isRequired
 }
 
