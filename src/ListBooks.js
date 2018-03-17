@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Bookshelf from './Bookshelf';
 import PropTypes from 'prop-types';
 
@@ -33,7 +34,9 @@ class ListBooks extends Component {
           />
         </div>
         <div className="open-search">
-          <a onClick={() => this.props.setShowSearchPage(true) }>Add a book</a>
+          <Link 
+            to="/create"
+          >Add a book</Link>
         </div>
       </div>
     );
@@ -50,7 +53,6 @@ function ListBooksHeader() {
 
 ListBooks.propTypes = {
   books: PropTypes.array.isRequired,
-  setShowSearchPage: PropTypes.func.isRequired,
   setBookshelf: PropTypes.func.isRequired
 }
 
