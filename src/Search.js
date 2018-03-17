@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Bookshelf from './Bookshelf';
 import PropTypes from 'prop-types';
-import escapeRegExp from 'escape-string-regexp';
+// import escapeRegExp from 'escape-string-regexp';
 import * as BooksAPI from './BooksAPI'
 // import sortBy from 'sort-by';
 
@@ -15,26 +15,18 @@ class Search extends Component {
     this.setState({ query: query });
     this.searchBooks(query)
   }
-
   searchBooks = (query) => {
-    if (this.state.query) {
-      // let showingBooks;
-      // const match = new RegExp(escapeRegExp(this.state.query), 'i');
-      // showingBooks = this.props.books.filter((book) => match.test(book.title));
-      BooksAPI.search(this.state.query).then((showingBooks) => {
-        this.setState({ showingBooks: showingBooks });
-
-      })
-      // console.log('search books', showingBooks);
+    if (query) {
+      BooksAPI.search(query).then((showingBooks) => {
+        console.log('showingBooks', showingBooks);
+        this.setState({ showingBooks: showingBooks.error ? [] : showingBooks });
+      });
     } else {
-      // showingBooks = this.props.books;
       this.setState({ showingBooks: []});
     }
   }
 
   render() {
-    // console.log('search books', this.state.showingBooks);
-
     return (
       <div className="search-books">
         <div className="search-books-bar">

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 class ListBooks extends Component {
 
   render() {
-    console.log('Props: ', this.props);
+    // console.log('Props: ', this.props);
     return (
       <div className="list-books">
         <ListBooksHeader />
