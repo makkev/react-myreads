@@ -13,18 +13,38 @@ class Search extends Component {
 
   updateQuery = (query) => {
     this.setState({ query: query });
-    this.searchBooks(query)
+    this.searchBooks(query);
   }
+
   searchBooks = (query) => {
     if (query) {
       BooksAPI.search(query).then((showingBooks) => {
-        console.log('showingBooks', showingBooks);
-        this.setState({ showingBooks: showingBooks.error ? [] : showingBooks });
+        if (!showingBooks.error) {
+          showingBooks = showingBooks.map((book) => {
+            const shelfBook = this.props.books.find((foundBook) => foundBook.id === book.id);
+            book.shelf = shelfBook ? shelfBook.shelf : 'none';
+            return book;
+          });
+          this.setState({ showingBooks: showingBooks });
+        } else {
+          this.setState({ showingBooks: []});
+        }
       });
     } else {
       this.setState({ showingBooks: []});
     }
   }
+
+  setBookshelf = (book, bookshelf) => {
+    console.log('book', book);
+    console.log('bookshelf', bookshelf);
+    let bookIndex = this.state.showingBooks.findIndex(x => x.id === book.id);
+    let booksCopy = this.state.showingBooks;
+    booksCopy[bookIndex].shelf = bookshelf;
+    this.setState({ showingBooks: booksCopy});
+    BooksAPI.update(book, bookshelf);
+  }
+
 
   render() {
     return (
@@ -52,7 +72,7 @@ class Search extends Component {
           <Bookshelf 
             books={this.state.showingBooks}
             bookshelfTitle='Search'
-            setBookshelf={this.props.setBookshelf}
+            setBookshelf={this.setBookshelf}
           />
         </div>
       </div>

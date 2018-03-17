@@ -27,8 +27,8 @@ class BooksApp extends Component {
   }
 
   setBookShelf = (book, bookshelf) => {
-    var bookIndex = this.state.books.findIndex(x => x.id === book.id);
-    var booksCopy = this.state.books;
+    let bookIndex = this.state.books.findIndex(x => x.id === book.id);
+    let booksCopy = this.state.books;
     booksCopy[bookIndex].shelf = bookshelf;
     this.setState({ books: booksCopy});
     BooksAPI.update(book, bookshelf);
