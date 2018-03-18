@@ -39,8 +39,6 @@ class Search extends Component {
   }
 
   setBookshelf = (book, bookshelf) => {
-    console.log('book', book);
-    console.log('bookshelf', bookshelf);
     let bookIndex = this.state.showingBooks.findIndex(x => x.id === book.id);
     let booksCopy = this.state.showingBooks;
     booksCopy[bookIndex].shelf = bookshelf;
@@ -50,10 +48,6 @@ class Search extends Component {
 
 
   render() {
-    // console.log('----');
-    // console.log('query', this.state.query);
-    // console.log('showingbooks', this.state.showingBooks);
-    console.log(this.props.history);
     return (
       <div className="search-books">
         <div className="search-books-bar">
