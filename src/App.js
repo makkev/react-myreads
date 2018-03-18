@@ -34,7 +34,7 @@ class BooksApp extends Component {
             setBookshelf={this.setBookShelf}
           />
         )}/>
-        <Route path="/create" render={() => (
+        <Route path="/search" render={() => (
           <Search 
             books={this.state.books} 
           />

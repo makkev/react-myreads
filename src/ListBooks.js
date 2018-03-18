@@ -35,7 +35,7 @@ class ListBooks extends Component {
         </div>
         <div className="open-search">
           <Link 
-            to="/create"
+            to="/search"
           >Add a book</Link>
         </div>
       </div>
